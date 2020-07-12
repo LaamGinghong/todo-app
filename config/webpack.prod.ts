@@ -15,7 +15,7 @@ const prodConfiguration: Configuration = {
   plugins: [
     new BannerPlugin({
       raw: true,
-      banner: `/** @preserve Powered by ${PROJECT_NAME} (https://github.com/LaamGinghong/todo_app */`,
+      banner: `/** @preserve Powered by ${PROJECT_NAME} (https://github.com/LaamGinghong/todo-app */`,
     }),
     new ForkTsCheckerWebpackPlugin({
       typescript: {

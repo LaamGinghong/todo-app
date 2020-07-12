@@ -1,5 +1,5 @@
 {
-  "name": "todo_app",
+  "name": "todo-app",
   "version": "1.0.0",
   "description": "纯TypeScript实现的简易MVC应用。",
   "main": "./src/index.ts",
