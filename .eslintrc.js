@@ -29,5 +29,6 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-unused-expressions': [2, { allowShortCircuit: true, allowTernary: true }],
   },
 }

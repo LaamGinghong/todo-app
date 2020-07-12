@@ -5,9 +5,13 @@ export interface TodoOptions {
 }
 
 class Model {
-  todoList: TodoOptions[] = []
+  todoList: TodoOptions[]
 
   onTodoListChanged: ((todoList: TodoOptions[]) => void) | undefined
+
+  constructor() {
+    this.todoList = JSON.parse(localStorage.getItem('todoList')!) ?? []
+  }
 
   add = (text: string): void => {
     const todo: TodoOptions = {
@@ -16,24 +20,30 @@ class Model {
       complete: false,
     }
     this.todoList.push(todo)
-    this.onTodoListChanged!(this.todoList)
+    this.common()
   }
 
   edit = (id: number, text: string): void => {
     const todo = this.todoList.find((item) => item.id === id)!
     todo.text = text
+    this.common(false)
   }
 
   delete = (id: number): void => {
     const index = this.todoList.findIndex((item) => item.id === id)
     this.todoList.splice(index, 1)
-    this.onTodoListChanged!(this.todoList)
+    this.common()
   }
 
   toggle = (id: number): void => {
     const todo = this.todoList.find((item) => item.id === id)!
     todo.complete = !todo.complete
-    this.onTodoListChanged!(this.todoList)
+    this.common()
+  }
+
+  common = (change = true): void => {
+    change && this.onTodoListChanged!(this.todoList)
+    localStorage.setItem('todoList', JSON.stringify(this.todoList))
   }
 
   bindTodoListChanged = (callback: (todoList: TodoOptions[]) => void): void => {
