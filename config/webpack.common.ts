@@ -1,4 +1,4 @@
-import { BannerPlugin, Configuration } from 'webpack'
+import { Configuration } from 'webpack'
 import { resolve } from 'path'
 import WebpackBar from 'webpackbar'
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
@@ -25,10 +25,6 @@ const commonConfiguration: Configuration = {
   },
   plugins: [
     new WebpackBar(),
-    new BannerPlugin({
-      raw: true,
-      banner: `/** @preserve Powered by ${PROJECT_NAME} (https://github.com/LaamGinghong/todo_app`,
-    }),
     new FriendlyErrorsWebpackPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
