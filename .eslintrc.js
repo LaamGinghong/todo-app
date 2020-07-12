@@ -20,5 +20,13 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'prettier'],
-  rules: {},
+  rules: {
+    'import/extensions': [
+      2,
+      'ignorePackages',
+      { ts: 'never', tsx: 'never', json: 'never', js: 'never' },
+    ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'no-useless-constructor': 'off',
+  },
 }
