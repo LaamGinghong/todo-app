@@ -96,5 +96,11 @@
     line-height: 32px;
     padding: 0 10px;
     border-radius: @border-radius;
+
+    &:focus {
+      border: 1px solid lighten(@primary-color, 10%);
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
   }
 }
