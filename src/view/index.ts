@@ -23,6 +23,8 @@ class View {
 
   private form: HTMLFormElement
 
+  private tempText = ''
+
   constructor() {
     this.app = View.getElement('#root') as HTMLDivElement
 
@@ -45,10 +47,21 @@ class View {
     /* 组装 */
     this.form.append(this.input, this.button)
     this.app.append(this.title, this.form, this.todoList)
+
+    this.initLocalListener()
   }
 
   get todoText(): string {
     return this.input.value
+  }
+
+  private initLocalListener = (): void => {
+    this.todoList.addEventListener('input', (event) => {
+      const target = event.target as HTMLSpanElement
+      if (target.classList.contains('todo-item-inner')) {
+        this.tempText = target.innerText
+      }
+    })
   }
 
   private resetInput = (): void => {
@@ -105,6 +118,17 @@ class View {
       if (target.classList.contains('delete')) {
         const id = +target.getAttribute('id')!
         handler(id)
+      }
+    })
+  }
+
+  bindEditTodo = (handler: (id: number, tempText: string) => void): void => {
+    this.todoList.addEventListener('focusout', (event) => {
+      if (this.tempText) {
+        const target = event.target as HTMLSpanElement
+        const id = +target.parentElement!.id
+        handler(id, this.tempText)
+        this.tempText = ''
       }
     })
   }

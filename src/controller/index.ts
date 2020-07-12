@@ -16,6 +16,7 @@ class Controller {
     this.view.bindAddTodo(this.handleAddTodo)
     this.view.bindDeleteTodo(this.handleDeleteTodo)
     this.view.bindToggleTodo(this.handleToggle)
+    this.view.bindEditTodo(this.handleEditTodo)
     this.model.bindTodoListChanged(this.onTodoListChanged)
   }
 
