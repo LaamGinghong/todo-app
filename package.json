@@ -1,0 +1,9 @@
+{
+  "name": "todo_app",
+  "version": "1.0.0",
+  "description": "纯TypeScript实现的简易MVC应用。",
+  "main": "./src/index.ts",
+  "author": "laamginghong",
+  "license": "MIT",
+  "private": true
+}
