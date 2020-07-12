@@ -27,7 +27,7 @@ class View {
     this.app = View.getElement('#root') as HTMLDivElement
 
     /* 标题 */
-    this.title = View.createElement('h1')
+    this.title = View.createElement('h1', 'title')
     this.title.textContent = 'Todo App'
 
     /* 列表 */
@@ -35,8 +35,8 @@ class View {
 
     /* 表单 */
     this.form = View.createElement('form') as HTMLFormElement
-    this.input = View.createElement('input') as HTMLInputElement
-    this.button = View.createElement('button') as HTMLButtonElement
+    this.input = View.createElement('input', 'input') as HTMLInputElement
+    this.button = View.createElement('button', 'button') as HTMLButtonElement
     this.input.setAttribute('placeholder', '添加待办事项')
     this.input.setAttribute('type', 'text')
     this.input.setAttribute('name', 'todo')
@@ -64,18 +64,18 @@ class View {
     }
     if (todoList.length) {
       const doms = todoList.map((todo) => {
-        const li = View.createElement('li')
+        const li = View.createElement('li', 'todo-item')
         li.id = `${todo.id}`
 
-        const checkbox = View.createElement('input') as HTMLInputElement
+        const checkbox = View.createElement('input', 'checkbox') as HTMLInputElement
         checkbox.type = 'checkbox'
         checkbox.checked = todo.complete
 
-        const span = View.createElement('span')
+        const span = View.createElement('span', 'todo-item-inner')
         span.textContent = todo.text
         span.contentEditable = `${true}`
 
-        const button = View.createElement('button', 'delete')
+        const button = View.createElement('button', 'delete button')
         button.textContent = '删除'
 
         li.append(checkbox, span, button)

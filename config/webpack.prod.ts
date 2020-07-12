@@ -4,6 +4,8 @@ import { merge } from 'webpack-merge'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import SizePlugin from 'size-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 import commonConfiguration from './webpack.common'
 import { PROJECT_NAME, PROJECT_ROOT } from '../constants/env'
@@ -22,10 +24,18 @@ const prodConfiguration: Configuration = {
       },
     }),
     new SizePlugin({ writeFile: false }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+      ignoreOrder: false,
+    }),
   ],
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin({ extractComments: false })],
+    minimizer: [
+      new TerserPlugin({ extractComments: false }),
+      new OptimizeCssAssetsPlugin(),
+    ],
   },
 }
 
